@@ -1,4 +1,4 @@
-Fork of scratch-storage used by TurboWarp.
+Fork of scratch-storage used by OmniBlocks
 
 <!--
 ## scratch-storage
