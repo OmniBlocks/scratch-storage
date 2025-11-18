@@ -35,6 +35,18 @@ const AssetType = {
         runtimeFormat: DataFormat.WAV,
         immutable: true
     },
+    Song: {
+        contentType: 'application/json',
+        name: 'Song',
+        runtimeFormat: DataFormat.JSON,
+        immutable: false  
+    },
+    Todo: {
+        contentType: 'application/json',
+        name: 'Todo',
+        runtimeFormat: DataFormat.JSON,
+        immutable: false  
+    },
     Sprite: {
         contentType: 'application/json',
         name: 'Sprite',
