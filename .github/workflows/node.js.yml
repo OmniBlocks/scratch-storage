@@ -7,7 +7,47 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Switch to develop-builds branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -C develop-builds
+
+      - name: Deploy build
+        run: |
+          # Copy build artifacts or commit changes
+          git add dist/
+          git commit -m "Deploy build from CI"
+          git push origin develop-builds --force
+
+      - name: Run tests
+        run: npm run test
+
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
